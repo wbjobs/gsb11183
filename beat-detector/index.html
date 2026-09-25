@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节拍检测器 — BPM & Beat Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>节拍检测器</h1>
+    <p class="subtitle">本地音频 · BPM 检测 · 波形与节拍点可视化（仅检测与可视化，不做混音/剪辑）</p>
+
+    <div id="dropZone" class="drop-zone">
+      <p>拖拽音频文件到这里，或</p>
+      <label class="file-label">
+        选择音频文件
+        <input type="file" id="fileInput" accept="audio/*">
+      </label>
+    </div>
+
+    <div class="status-row">
+      <span id="status">请选择一个音频文件</span>
+    </div>
+    <div id="progressWrap" class="progress-wrap" style="display:none">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <div class="info-row">
+      <div class="info-box">
+        <span class="info-label">BPM</span>
+        <span id="bpmValue" class="info-value">—</span>
+      </div>
+      <div class="info-box">
+        <span class="info-label">节拍点数</span>
+        <span id="beatCount" class="info-value">0</span>
+      </div>
+      <div class="info-box">
+        <span class="info-label">灵敏度</span>
+        <input type="range" id="sensitivity" min="0" max="100" value="50">
+        <span id="sensitivityLabel" class="info-value">50</span>
+      </div>
+    </div>
+
+    <p id="noBeatHint" class="no-beat-hint" style="display:none">
+      ⚠ 未检测到明显节拍：该音频可能是纯噪声、语音或无规律内容。可尝试调高灵敏度。
+    </p>
+
+    <canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+    <div class="controls-row">
+      <button id="playBtn" disabled>播放</button>
+      <span id="timeLabel">0:00 / 0:00</span>
+      <button id="exportBtn" disabled>导出节拍时间点 (CSV)</button>
+    </div>
+  </main>
+
+  <script src="js/beat-dsp.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

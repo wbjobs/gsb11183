@@ -1,0 +1,56 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #0f1420; color: #e6eaf2; min-height: 100vh;
+}
+.app { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
+header h1 { font-size: 26px; }
+.subtitle { color: #8b94a7; margin-top: 6px; font-size: 14px; }
+
+.dropzone {
+  margin-top: 24px; border: 2px dashed #3a4560; border-radius: 12px;
+  padding: 40px 20px; text-align: center; transition: border-color .2s, background .2s;
+}
+.dropzone.dragover { border-color: #4f8cff; background: rgba(79,140,255,.08); }
+.hint { color: #6b7488; font-size: 12px; margin-top: 8px; }
+button.link { background: none; border: none; color: #4f8cff; cursor: pointer; font-size: inherit; text-decoration: underline; }
+
+.status { display: flex; align-items: center; gap: 12px; margin-top: 20px; color: #9fb4d8; }
+.spinner {
+  width: 18px; height: 18px; border: 2px solid #33405c; border-top-color: #4f8cff;
+  border-radius: 50%; animation: spin .8s linear infinite;
+}
+.spinner.done { display: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.panel { margin-top: 24px; background: #161d2e; border-radius: 12px; padding: 20px; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.info-grid label { display: block; color: #6b7488; font-size: 12px; margin-bottom: 4px; }
+.info-grid span { font-size: 15px; word-break: break-all; }
+.info-grid .bpm { color: #4fd18b; font-weight: 700; font-size: 20px; }
+
+.notice {
+  margin-top: 14px; padding: 10px 14px; border-radius: 8px;
+  background: rgba(255, 180, 60, .12); color: #ffcf7d; font-size: 13px;
+}
+
+.wave-wrap { position: relative; margin-top: 16px; height: 220px; cursor: crosshair; }
+.wave-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.legend { display: inline-block; width: 14px; height: 3px; vertical-align: middle; border-radius: 2px; }
+.legend.beat { background: #ffb454; }
+.legend.playhead { background: #ff5c7a; }
+
+.controls { display: flex; align-items: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+button {
+  background: #4f8cff; color: #fff; border: none; border-radius: 8px;
+  padding: 9px 20px; font-size: 14px; cursor: pointer;
+}
+button:disabled { background: #33405c; cursor: not-allowed; }
+.time { color: #9fb4d8; font-variant-numeric: tabular-nums; font-size: 13px; }
+.slider-label { display: flex; align-items: center; gap: 8px; color: #9fb4d8; font-size: 13px; }
+.slider-label input { width: 160px; accent-color: #4f8cff; }
+#sensValue { min-width: 24px; text-align: right; color: #e6eaf2; }
+
+.export { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.export button { background: #26314a; }
+.export button:hover { background: #31405f; }

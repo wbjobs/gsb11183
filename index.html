@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>节拍检测器 - BPM & Beat Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header>
+    <h1>🎵 节拍检测器</h1>
+    <p class="subtitle">本地音频 BPM 检测 · 波形可视化 · 节拍点导出（纯本地处理，不上传）</p>
+  </header>
+
+  <section class="dropzone" id="dropzone">
+    <input type="file" id="fileInput" accept="audio/*,.mp3,.wav,.ogg,.flac,.m4a,.aac" hidden>
+    <p>拖入音频文件，或 <button class="link" id="pickBtn" type="button">点击选择文件</button></p>
+    <p class="hint">支持 MP3 / WAV / OGG / FLAC / M4A，大文件（100MB+）自动降采样处理</p>
+  </section>
+
+  <section class="status" id="status" hidden>
+    <div class="spinner" id="spinner"></div>
+    <span id="statusText"></span>
+  </section>
+
+  <section class="panel" id="panel" hidden>
+    <div class="info-grid">
+      <div><label>文件</label><span id="infoName">-</span></div>
+      <div><label>大小</label><span id="infoSize">-</span></div>
+      <div><label>时长</label><span id="infoDuration">-</span></div>
+      <div><label>BPM</label><span id="infoBpm" class="bpm">-</span></div>
+      <div><label>节拍点数</label><span id="infoBeats">-</span></div>
+      <div><label>检测耗时</label><span id="infoTime">-</span></div>
+    </div>
+    <div class="notice" id="noBeatNotice" hidden>⚠️ 未检测到明显节拍（可能是纯噪声、长音或无节奏音频），以下仅显示波形。</div>
+
+    <div class="wave-wrap" id="waveWrap">
+      <canvas id="waveCanvas"></canvas>
+      <canvas id="overlayCanvas"></canvas>
+    </div>
+    <p class="hint">点击波形可跳转播放位置；<span class="legend beat"></span> 节拍点 <span class="legend playhead"></span> 播放头</p>
+
+    <div class="controls">
+      <button id="playBtn" type="button" disabled>▶ 播放</button>
+      <span class="time" id="timeLabel">00:00.0 / 00:00.0</span>
+      <label class="slider-label">灵敏度
+        <input type="range" id="sensitivity" min="0" max="100" value="50">
+        <span id="sensValue">50</span>
+      </label>
+    </div>
+
+    <div class="export">
+      <button id="exportTxt" type="button">导出 TXT</button>
+      <button id="exportCsv" type="button">导出 CSV</button>
+      <button id="exportJson" type="button">导出 JSON</button>
+      <button id="copyBtn" type="button">复制到剪贴板</button>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
